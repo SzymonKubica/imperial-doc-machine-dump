@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+}
+
+.navbar {
+  background-color: #A5315B;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+}
+
+p {
+  font-size: 20px;
+}
+
+span {
+  font-size: 50px;
+}
+
+
+.PaystackButton {
+  cursor: pointer;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  background-color: #56d49d;
+  font-weight: bold;
+  color: #e0eafc;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 45px;
+  margin-top: 40px;
+}

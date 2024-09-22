@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sizes=("128" "256" "512" "1024")
+
+executables=("./out/MM1.x86" "./out/MM2.x86" "./out/MM3.x86" "./out/MM4.x86")
+
+for size in "${sizes[@]}"
+do
+  ./scripts/make-size $size x86 > /dev/null 2>&1
+  echo "Benchmarking size: $size"
+  for executable in "${executables[@]}"
+  do
+    time ./$executable
+  done
+done

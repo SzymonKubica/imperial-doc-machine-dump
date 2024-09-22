@@ -1,0 +1,4 @@
+#!/bin/sh
+# print the pid of the last-executed cachegrind process 
+# by finding the log file in the current directory
+ls -rt cachegrind.out.* | tail -1 | awk -F. '{print $3;}'

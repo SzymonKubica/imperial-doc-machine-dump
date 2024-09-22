@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+  echo "Usage: ./$0 <problem-size> <target-arch>"
+else
+  SIZE=$1
+  make clean;
+  make MYFLAGS="-DSZ=$SIZE -DARRAYSZ=8192" $2
+fi

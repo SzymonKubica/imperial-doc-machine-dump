@@ -1,0 +1,15 @@
+#!/bin/bash
+
+ruu_size=16
+lsq_size=16
+bpredictor=comb
+
+for meta_table_size in 16 32 64 128
+do
+  for return_address_stack_size in 8 16 32
+  do
+    echo -n "return_address_stack_size,$return_address_stack_size,meta_table_size,$meta_table_size,D1_cache_size,128,D1_cache_linesize,32,bpred,$bpredictor,ruu_size,$ruu_size,lsq_size,$lsq_size"
+    export SSFLAGS="-bpred $bpredictor -ruu:size $ruu_size -lsq:size $lsq_size -bpred:comb $meta_table_size -bpred:ras $return_address_stack_size"
+    ./run-wattch 2>&1 | ./scripts/tabulate
+  done
+done

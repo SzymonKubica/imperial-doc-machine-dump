@@ -1,0 +1,57 @@
+rename_power           11616756.3553 # total power usage of rename unit
+bpred_power            125713866.2453 # total power usage of bpred unit
+window_power           61265923.6779 # total power usage of instruction window
+lsq_power              37139013.7753 # total power usage of load/store queue
+regfile_power          99291782.1409 # total power usage of arch. regfile
+icache_power           78563851.9079 # total power usage of icache
+dcache_power           170704235.3645 # total power usage of dcache
+dcache2_power          117462633.2868 # total power usage of dcache2
+alu_power              228752033.3897 # total power usage of alu
+falu_power             99230334.2196 # total power usage of falu
+resultbus_power        63856937.4221 # total power usage of resultbus
+clock_power            538346222.1679 # total power usage of clock
+fetch_stage_power      204277718.1532 # total power usage of fetch stage
+dispatch_stage_power   11616756.3553 # total power usage of dispatch stage
+issue_stage_power      679180776.9161 # total power usage of issue stage
+rename_power_cc1       7044358.1295 # total power usage of rename unit_cc1
+bpred_power_cc1        28664990.1337 # total power usage of bpred unit_cc1
+window_power_cc1       42471814.2496 # total power usage of instruction window_cc1
+lsq_power_cc1          7931657.8042 # total power usage of lsq_cc1
+regfile_power_cc1      55006818.7891 # total power usage of arch. regfile_cc1
+icache_power_cc1       50681492.3525 # total power usage of icache_cc1
+dcache_power_cc1       63596483.2963 # total power usage of dcache_cc1
+dcache2_power_cc1        25494.8584 # total power usage of dcache2_cc1
+alu_power_cc1          78728625.2666 # total power usage of alu_cc1
+resultbus_power_cc1    39883459.7828 # total power usage of resultbus_cc1
+clock_power_cc1        234480418.6716 # total power usage of clock_cc1
+fetch_stage_power_cc1  79346482.4862 # total power usage of fetch stage_cc1
+dispatch_stage_power_cc1 7044358.1295 # total power usage of dispatch stage_cc1
+issue_stage_power_cc1  232637535.2579 # total power usage of issue stage_cc1
+rename_power_cc2       4525817.7494 # total power usage of rename unit_cc2
+bpred_power_cc2        19426882.1486 # total power usage of bpred unit_cc2
+window_power_cc2       33890031.3488 # total power usage of instruction window_cc2
+lsq_power_cc2          5691601.1072 # total power usage of lsq_cc2
+regfile_power_cc2      14778566.0379 # total power usage of arch. regfile_cc2
+icache_power_cc2       50681492.3525 # total power usage of icache_cc2
+dcache_power_cc2       49626438.2145 # total power usage of dcache_cc2
+dcache2_power_cc2        15738.5583 # total power usage of dcache2_cc2
+alu_power_cc2          44365580.5464 # total power usage of alu_cc2
+resultbus_power_cc2    23320551.1423 # total power usage of resultbus_cc2
+clock_power_cc2        154609678.4772 # total power usage of clock_cc2
+fetch_stage_power_cc2  70108374.5011 # total power usage of fetch stage_cc2
+dispatch_stage_power_cc2 4525817.7494 # total power usage of dispatch stage_cc2
+issue_stage_power_cc2  156909940.9174 # total power usage of issue stage_cc2
+rename_power_cc3       4983057.5718 # total power usage of rename unit_cc3
+bpred_power_cc3        29169658.8714 # total power usage of bpred unit_cc3
+window_power_cc3       35693237.6266 # total power usage of instruction window_cc3
+lsq_power_cc3          8577689.5613 # total power usage of lsq_cc3
+regfile_power_cc3      18724330.0430 # total power usage of arch. regfile_cc3
+icache_power_cc3       53469728.3063 # total power usage of icache_cc3
+dcache_power_cc3       60694720.2635 # total power usage of dcache_cc3
+dcache2_power_cc3      11759553.1981 # total power usage of dcache2_cc3
+alu_power_cc3          59367921.3373 # total power usage of alu_cc3
+resultbus_power_cc3    25650182.4313 # total power usage of resultbus_cc3
+clock_power_cc3        184816490.3008 # total power usage of clock_cc3
+fetch_stage_power_cc3  82639387.1776 # total power usage of fetch stage_cc3
+dispatch_stage_power_cc3 4983057.5718 # total power usage of dispatch stage_cc3
+issue_stage_power_cc3  201743304.4180 # total power usage of issue stage_cc3

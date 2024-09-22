@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# The following defaults are prepended to make the data schema consistent with
+# the other experiments:
+# bpred = bimod
+# lsq_size = 8
+# D1_cache_size = 128
+# D1_cache_linesize = 32
+#
+
+## Issue decode commit width
+ruu_size=16
+lsq_size=8
+ifq_size=4
+for commit_width in 2 4 8 16
+do
+  for width in 2
+  do
+  echo -n "issue_width,$width,decode_width,$width,commit_width,$commit_width,fp_alu_count,1,D1_cache_size,128,D1_cache_linesize,32,bpred,comb,ruu_size,16,lsq_size,8,ifq_size,$ifq_size"
+  export SSFLAGS="-ruu:size 16 -lsq:size 8 -res:fpalu 1 -res:fpmult 1 -decode:width $width -issue:width $width -fetch:ifqsize $ifq_size -commit:width $commit_width -res:ialu 2 -cache:dl1 dl1:128:32:1:l -cache:dl2 ul2:128:64:2:l -bpred comb -bpred:comb 128 -bpred:ras 8 -bpred:btb 256 2 -tlb:itlb itlb:16:4096:1:l -tlb:dtlb dtlb:16:4096:1:l -cache:il2 dl2"
+    ./run-wattch 2>&1 | ./scripts/tabulate
+#sim: command line: /homes/phjk/simplesim-wattch/sim-outorder -ruu:size 16 -lsq:size 8 -res:fpalu 1 -res:fpmult 1 -decode:width 2 -issue:width 2 -fetch:ifqsize 8 -commit:width 8 -res:ialu 2 -cache:dl1 dl1:128:32:1:l -cache:dl2 ul2:128:64:2:l -bpred comb -bpred:comb 128 -bpred:ras 8 -bpred:btb 256 2 -tlb:itlb itlb:16:4096:1:l -tlb:dtlb dtlb:16:4096:1:l -cache:il2 dl2 ./splaytest.ss 3 100000 100000 100000 3
+  done
+done

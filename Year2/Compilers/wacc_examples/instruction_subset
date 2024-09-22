@@ -1,0 +1,21 @@
+---Useful ARM instruction subset used by the reference compiler---
+
+PUSH reg
+LDR reg, a_mode2 (e.g LDR r1 =256 loads an immediate integer)
+MOV reg, reg
+BL <label> (branch with link)
+POP <reglist> (pop a list of registers from the stack)
+SUB reg, reg, const
+STRB
+LDRSB
+AND
+LDRNE
+LDREQ
+CMP
+BLVS
+ADDS
+
+
+
+
+

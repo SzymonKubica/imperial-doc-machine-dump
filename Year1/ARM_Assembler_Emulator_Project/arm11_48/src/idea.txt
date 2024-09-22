@@ -1,0 +1,11 @@
+ASSEMBLE.c
+
+parse_file function psuedocode: 
+loop: instructions line by line
+
+|
+| -> LABEL: SYMBOL TABLE
+|
+| -> INSTRUCTION:
+	To do: Tokenise by decomposing different parts of instruction 
+	Add array of struct where strust { mnemonic, operand(s) in an array }

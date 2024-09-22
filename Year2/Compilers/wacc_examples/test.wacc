@@ -1,0 +1,8 @@
+begin
+int a = 5;
+int b = 5;
+int c = 10;
+read c;
+char ch = 'a';
+read ch
+end

@@ -1,0 +1,27 @@
+# Modified by Szymon Kubica (sk4520) 18 Feb 2023
+Multipaxos module:
+
+At the top level the Multipaxos module starts up and spawns the state machine
+monitor an all of the servers. Then it receives binding messages from the servers.
+Those messages are of the form:
+  {:MODULES, replica,  acceptor, leader}
+and so they contain the PIDs of the child processes of each server. After that,
+the module finishes the binding process by sending all leaders to each replica,
+then sending all acceptors and replicas to each leader. Finally, Multipaxos
+spawns the clients while passing all replicas to each one of them.
+
+Server module:
+
+Each server module spawns its database, replica, leader and acceptor modules.
+After that it provides functionality for forcing servers to crash by inspecting
+the config.crash_servers map.
+
+Database module:
+
+Allows for executing transactions, accepts one type of messages:
+  {:EXECUTE, transaction}
+
+
+
+
+

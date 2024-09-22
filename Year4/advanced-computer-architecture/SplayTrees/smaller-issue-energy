@@ -1,0 +1,14 @@
+rename_power_cc1 3835033.6195
+bpred_power_cc1 16355754.5089
+window_power_cc1 17971109.0925
+lsq_power_cc1 6122455.4505
+regfile_power_cc1 29831661.2526
+icache_power_cc1 75900187.6516
+dcache_power_cc1 32397957.5797
+dcache2_power_cc1 29002.8802
+alu_power_cc1 56571757.7354
+resultbus_power_cc1 13809044.1145
+clock_power_cc1 213162078.6050
+fetch_stage_power_cc1 92255942.1605
+dispatch_stage_power_cc1 3835033.6195
+issue_stage_power_cc1 126901326.8528

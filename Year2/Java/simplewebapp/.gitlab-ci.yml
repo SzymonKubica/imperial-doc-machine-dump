@@ -1,0 +1,37 @@
+stages:
+  - build
+  - test
+  - deploy
+  - heroku
+
+build-job:
+  stage: build
+  script:
+    - echo "Compiling..."
+    - mvn compile
+    - echo "Finished compiling"
+
+test-job:
+  stage: test
+  script:
+    - echo "Testing..."
+    - mvn test
+    - echo "Finished testing"
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Deploying..."
+    - mvn package
+    - sh ~/killcommand.sh || true
+    - export PORT=5000
+    - nohup sh target/bin/simplewebapp >> ~/CIlog.txt 2>&1 &
+    - echo "kill $!" > ~/killcommand.sh
+    - echo "Finished deploying"
+
+heroku-job:
+  stage: heroku
+  script:
+    - echo "Deploying to Heroku..."
+    - dpl --provider=heroku --app=sb3320-simplewebapp --api-key=0475e0db-660c-4f94-9f85-83bfbbb67d2c
+    - echo "Deployed to Heroku"

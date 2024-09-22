@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Usage: varycachesizeAndAssoc ./MM1.ss 256 8192 2
+# for powers of two from 256 to 8192 inclusive, two-way set associative
+
+for ((x=$2; x <= $3 ; x *= 2))
+do
+  echo -n "D1_cache_size," $x " ,dl1.miss_rate, "
+  /homes/phjk/simplesim/sim-cache -cache:dl1 dl1:$x:32:$4:l \
+     $1 \
+     2>&1 | grep dl1.miss_rate | awk '{print $2;}'
+done

@@ -1,0 +1,2 @@
+#!/bin/bash
+./run-wattch 2>&1 | grep 'total power usage' | awk '{print $1, $2}'

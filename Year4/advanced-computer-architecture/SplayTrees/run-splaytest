@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+# The splaytest program's command-line parameters are:
+# ./splaytst.x86 3 <number-of-insertions> <number-of-queries> <key-range> <delta>
+# number-of-insertions is the number of random insertions into the tree.
+# number-of-queries is the number of random queries after the insertions.
+# key-range is the maximum key value used
+# delta is the maximum random step size for the random walk
+
+# In the experiments it is recommended to set
+# number-of-insertions=number-of-queries=key-range
+# That's why this wrapper script is provided.
+#
+DELTA=5
+TEST_NUMBER=3 # 3 is the focus of the exercise, tests 1, 2 are for debugging.
+
+if [ -z $1 ]
+then
+  echo " Usage: ./$0 <source-file> <number-of-insertions-queries-key-range>"
+else
+  n=$2
+  ./$1 $TEST_NUMBER $n $n $n $DELTA
+fi

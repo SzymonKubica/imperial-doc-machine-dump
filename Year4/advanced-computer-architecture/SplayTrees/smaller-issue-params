@@ -1,0 +1,1 @@
+-ruu:size 8 -lsq:size 8 -res:fpalu 1 -res:fpmult 1 -decode:width 2 -issue:width 2 -commit:width 2 -res:ialu 2 -cache:dl1 dl1:128:32:1:l -cache:dl2 ul2:128:64:1:l -bpred comb -bpred:comb 128 -bpred:ras 8 -bpred:btb 256 2 -tlb:itlb itlb:16:4096:1:l -tlb:dtlb dtlb:16:4096:1:l -cache:il2 dl2

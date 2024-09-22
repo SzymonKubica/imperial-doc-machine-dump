@@ -1,0 +1,7 @@
+test/*
+WACCLangSpec.aux
+WACCLangSpec.fdb_latexmk
+WACCLangSpec.fls
+WACCLangSpec.log
+WACCLangSpec.pdf
+WACCLangSpec.synctex.gz

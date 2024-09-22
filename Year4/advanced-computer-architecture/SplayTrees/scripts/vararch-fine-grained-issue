@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# The following defaults are prepended to make the data schema consistent with
+# the other experiments:
+# bpred = bimod
+# lsq_size = 8
+# D1_cache_size = 128
+# D1_cache_linesize = 32
+#
+
+## Issue decode commit width
+ruu_lsq_size=8
+for issue_width in 1 2 4 8
+do
+  for decode_width in 1 2 4 8
+  do
+    for commit_width in 1 2 4 8
+    do
+      for ifq_size in 1 2 4 8
+      do
+        echo -n "issue_width,$issue_width,decode_width,$decode_width,commit_width,$commit_width,fp_alu_count,1,D1_cache_size,128,D1_cache_linesize,32,bpred,comb,ruu_size,$ruu_lsq_size,lsq_size,$ruu_lsq_size"
+        export SSFLAGS="-ruu:size $ruu_lsq_size -lsq:size $ruu_lsq_size -res:fpalu 1 -res:fpmult 1 -fetch:ifqsize $ifq_size -decode:width $decode_width -issue:width $issue_width -commit:width $commit_width -res:ialu 3 -cache:dl1 dl1:128:32:1:l -cache:dl2 ul2:128:64:2:l -bpred comb -bpred:comb 128 -bpred:ras 8 -bpred:btb 256 2 -tlb:itlb itlb:16:4096:1:l -tlb:dtlb dtlb:16:4096:1:l -cache:il2 dl2"
+          ./run-wattch 2>&1 | ./scripts/tabulate
+      done
+    done
+  done
+done

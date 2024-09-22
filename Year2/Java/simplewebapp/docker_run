@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+docker run -t -i -e PORT=8080 -p 5000:8080 simplewebapp

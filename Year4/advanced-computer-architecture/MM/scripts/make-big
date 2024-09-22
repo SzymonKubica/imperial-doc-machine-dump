@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# build for a problem size that pushes the limits of the blas implementation
+# There's a link error when ARRAYSZ is 16384 (probably fixable by using malloc instead of a static declaration).
+
+SIZE=10112
+make clean;
+make MYFLAGS="-DSZ=$SIZE -DARRAYSZ=8192"
+make -f Makefile-blas clean;
+make -f Makefile-blas MYFLAGS="-DSZ=$SIZE -DARRAYSZ=8192"

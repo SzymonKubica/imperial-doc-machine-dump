@@ -1,0 +1,1 @@
+make clean; make MYFLAGS="-DSZ=192 -DARRAYSZ=1024"

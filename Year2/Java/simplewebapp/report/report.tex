@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+
+\setcounter{tocdepth}{3}
+
+% latex package inclusions here
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{tabulary}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{float}
+
+% set up source code inclusion
+\usepackage{listings}
+\lstset{
+  tabsize=2,
+  basicstyle = \ttfamily\small,
+  columns=fullflexible
+}
+
+% global style modifiers
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title{The DevOps Laboratory Report}
+\date{}
+\author{
+Second Year Computing Laboratory \\ 
+Department of Computing \\ 
+Imperial College London
+}
+
+\maketitle
+
+\section*{Group members}
+
+WACC group number: 40
+
+
+Shiv Bhatia (sb3320)
+
+Archie Licudi (adl20)
+
+Deepro Choudhury (dc1819)
+
+Szymon Kubica (sk4520)
+
+
+\section*{URLs}
+
+GitLab: https://gitlab.doc.ic.ac.uk/sk4520/simplewebapp
+
+Heroku: https://sb3320-simplewebapp.herokuapp.com/
+
+\section*{Screenshots}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{pipeline.png}
+  \caption{Latest GitLab pipeline dashboard screenshot.}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{deploy1.png}
+  \caption{Gitlab log of the latest deploy - part 1.}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{deploy2.png}
+  \caption{Gitlab log of the latest deploy - part 2.}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{deploy3.png}
+  \caption{Gitlab log of the latest deploy - part 3.}
+\end{figure}
+\end{document}

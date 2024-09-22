@@ -1,0 +1,2 @@
+#!/bin/bash
+cat $1 | grep 'total power usage' | grep cc1 | awk '{print $1, $2}'

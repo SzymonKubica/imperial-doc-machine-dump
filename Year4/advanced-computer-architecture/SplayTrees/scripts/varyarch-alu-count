@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# The following defaults are prepended to make the data schema consistent with
+# the other experiments:
+# bpred = bimod
+# lsq_size = 8
+# D1_cache_size = 128
+# D1_cache_linesize = 32
+#
+# This script aims to investigate the impact of the number of floating point
+# ALU and multipliers / dividers available
+
+for ialu_num in 1 2 3 4 8
+do
+  ruu_size=16
+  lsq_size=16
+  echo -n "ialu_count,$ialu_num,D1_cache_size,128,D1_cache_linesize,32,bpred,bimod,ruu_size,$ruu_size,lsq_size,$lsq_size"
+  export SSFLAGS="-ruu:size $ruu_size -lsq:size $lsq_size -res:ialu $ialu_num -res:fpalu 1 -res:fpmult 1"
+  ./run-wattch 2>&1 | ./scripts/tabulate
+done

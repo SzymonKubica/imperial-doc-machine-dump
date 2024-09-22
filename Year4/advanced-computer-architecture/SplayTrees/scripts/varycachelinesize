@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Usage: varycachelinesize 16 64 for powers of two from 16 to 64 inclusive
+# IMPORTANT: Line sizes of 128 or larger crash the simulator!
+
+# The following defaults are prepended to make the data schema consistent with
+# the other experiments:
+# bpred = bimod
+# lsq_size = 8
+# D1_cache_size = 128
+# D1_cache_linesize = 32
+
+if [ -z $1 ];
+then
+  echo "Usage: ./scripts/$0 <min-cache-size> <max-cache-size>"
+  echo "IMPORTANT: Line sizes of 128 or larger crash the simulator!"
+else
+  for ((cache_linesize = $1; cache_linesize <= $2; cache_linesize *= 2))
+  do
+    echo -n "D1_cache_size,128,D1_cache_linesize,$cache_linesize,bpred,bimod,ruu_size,16,lsq_size,8"
+    export SSFLAGS="-cache:dl1 dl1:1024:$cache_linesize:1:l"
+    ./run-wattch 2>&1 | ./scripts/tabulate
+  done
+fi

@@ -1,0 +1,16 @@
+Question:
+List the command line options you have used to complete this exercise.
+For each of them, explain (in <= 2 sentences) what they mean and what they allow you to do.
+
+Answer:
+
+-d <directory> This option allowed me to specify where javac should place the compiled .class files.
+
+--help Allows to see the list of available options.
+
+--source-path, -sourcepath It allows to tell the javac where to look for the source files.
+
+-cp, --class-path, -classpath It allows to add libraries that are necessary for the code to compile.
+ It was also used in order to run the compiled files that utilised libraries.
+
+

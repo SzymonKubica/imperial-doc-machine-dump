@@ -1,0 +1,6 @@
+D1_cache_size 256  dl1.miss_rate 0.1394
+D1_cache_size 512  dl1.miss_rate 0.1354
+D1_cache_size 1024  dl1.miss_rate 0.1334
+D1_cache_size 2048  dl1.miss_rate 0.1020
+D1_cache_size 4096  dl1.miss_rate 0.0351
+D1_cache_size 8192  dl1.miss_rate 0.0095

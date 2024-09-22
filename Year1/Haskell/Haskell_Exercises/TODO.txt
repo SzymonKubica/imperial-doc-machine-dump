@@ -1,0 +1,2 @@
+This is the list of exercises that i have skipped and they need to be done:
+3.2 List Comprehensions 7, 8

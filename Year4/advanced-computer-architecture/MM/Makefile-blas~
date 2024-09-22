@@ -1,0 +1,48 @@
+# Build the openblas version
+#
+# Paul H J Kelly Imperial College London 2005, 2016, 2019
+#
+# Makefile structure from:
+#  http://www.gnu.org/software/make/manual/html_node/make_44.html#SEC48
+#
+
+#CC=/opt/intel/bin/icc
+CC=gcc
+# alternatives might be CC=/opt/intel/bin/icc or CC=gcc or CC=clang
+
+# optimisation flags for gcc
+X86OPTFLAGS=-O3 -mavx2 -fopt-info
+# -fopt-info tells it to report what it's been doing
+# -mavx2 tells it to generate vectorised code using the AVX2 instruction set extensions (not available on older hardware)
+
+BLASINCLUDE=
+BLASLIB=-lblas
+
+# for icc we need to use low optimisation level to prevent it from cheating and replacing the code with a library call
+#X86OPTFLAGS=-O1 
+
+SRC=MM5-blas.c 
+
+all: 	x86 
+
+
+################################################################
+# Native linux x86
+
+OBJx86= $(SRC:.c=.x86)
+
+x86: $(OBJx86) Makefile
+
+$(OBJx86): %.x86: %.c
+	$(CC) -o $@ $(X86OPTFLAGS) -g -Wall ${BLASINCLUDE} $(MYFLAGS) $< ${BLASLIB}
+
+
+################################################################
+# This rule has to come last; it deletes all the binaries.
+# If you define a new class of binaries, add it to this list
+#
+clean:	
+	rm -f $(OBJx86) 
+
+.PHONY: all clean
+

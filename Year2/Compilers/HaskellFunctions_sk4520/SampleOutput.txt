@@ -1,0 +1,55 @@
+Sample output for various examples
+
+Paul Kelly February 2009
+
+Your code generator might produce somewhat different code, perhaps
+better.  
+
+Note that in this sample code, the function result is returned in D0, and the 
+function argument is passed in D1.  Your code generator should assign 
+registers according to the exercise specification.
+
+> test0 = [Defun "main" "x" (Minus (Var "x")(Const 300))]
+
+Main> test0
+
+main(x) { return x - 300; }
+
+Main>  putCode (transProgram test0)
+main:
+        mov  $300, D2
+        mov  D1, D0
+        sub  D2, D0
+        ret
+
+
+
+> test1
+>  = [Defun "dec" "x" (Minus (Var "x") (Const 1)),
+>     Defun "main" "x" (Minus (Const 2) (Apply "dec" (Minus (Const 1)(Var "x"))))]
+
+Main> test1
+
+dec(x) { return x - 1; }
+
+main(x) { return 2 - dec(1 - x); }
+
+Main>  putCode (transProgram test1)
+dec:
+        mov  $1, D2
+        mov  D1, D0
+        sub  D2, D0
+        ret
+main:
+        push D1
+        mov  D1, D2
+        mov  $1, D0
+        sub  D2, D0
+        mov  D0, D1
+        jsr  dec
+        mov  D0, D2
+        pop  D1
+        mov  $2, D0
+        sub  D2, D0
+        ret
+

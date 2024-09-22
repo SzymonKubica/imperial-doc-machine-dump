@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# This script is responsible for varying the RUU size
+# It will show the sim_IPC metric - instructions per clock cycle for each
+# of the sizes of the register update unit.
+# The hypothesis is that the IPC will first grop but at some point before we
+# get to 256 it will plateau as there won't be enough instuctions coming in
+# to fill the entire RUU (and so the commit buffer consequently)
+
+# The following defaults are prepended to make the data schema consistent with
+# the other experiments:
+# bpred = bimod
+# lsq_size = 8
+# D1_cache_size = 128
+# D1_cache_linesize = 32
+
+for ruu_size in 2 4 8 16 32 64 128 256
+do
+  echo -n "D1_cache_size,128,D1_cache_linesize,32,bpred,bimod,ruu_size,$ruu_size,lsq_size,8"
+  export SSFLAGS="-ruu:size $ruu_size"
+  ./run-wattch 2>&1 | ./scripts/tabulate
+done

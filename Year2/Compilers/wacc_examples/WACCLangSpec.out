@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{What is WACC?}{}% 1
+\BOOKMARK [1][-]{section.2}{WACC Language Syntax}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{BNF}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{WACC Language Semantics}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Types}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Program Scopes}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.3}{Programs}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.4}{Function Definitions}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.5}{Statements}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.6}{Expressions}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.7}{Whitespace and Comments}{section.3}% 11

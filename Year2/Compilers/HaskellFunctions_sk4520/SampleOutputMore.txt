@@ -1,0 +1,237 @@
+More sample output for various examples
+
+Paul Kelly February 2009
+
+Your code generator might produce somewhat different code, perhaps
+better.  
+
+Note that in this sample code, the function result is returned in D0, and the
+function argument is passed in D1.  Your code generator should assign registers
+according to the exercise specification.
+
+> test2
+>  = [Defun "dec" "x" (Minus (Var "x") (Const 1)),
+>     Defun "main" "x" (Minus (Apply "dec" (Var "x")) (Const 100))]
+
+Main> test2
+
+dec(x) { return x - 1; }
+
+main(x) { return dec(x) - 100; }
+
+Main>  putCode (transProgram test2)
+dec:
+        mov  $1, D2
+        mov  D1, D0
+        sub  D2, D0
+        ret
+main:
+        push D1
+        mov  D1, D0
+        mov  D0, D1
+        jsr  dec
+        pop  D1
+        mov  $100, D2
+        sub  D2, D0
+        ret
+
+
+
+Test3: deep calls, multiple per call (needs big stack, 64 is too
+small)
+
+Test3: deep calls, multiple per call (needs big stack, 32 is too small)
+
+> t3_basea x = x-1
+> t3_baseb x = x-100
+> t3_f5 x = t3_basea x - t3_baseb x
+> t3_f4 x = t3_basea x - t3_f5 x
+> t3_f3 x = t3_f5 x - t3_f4 x
+> t3_f2 x = t3_f4 x - t3_f3 x
+> t3_f1 x = t3_f3 x - t3_f2 x
+> t3_main x = t3_f1 x
+> test3
+>  = [Defun "basea" "x" (Minus (Var "x") (Const 1)),
+>     Defun "baseb" "x" (Minus (Var "x") (Const 100)),
+>     Defun "f5" "x" (Minus (Apply "basea" (Var "x")) (Apply "baseb" (Var "x"))),
+>     Defun "f4" "x" (Minus (Apply "basea" (Var "x")) (Apply "f5" (Var "x"))),
+>     Defun "f3" "x" (Minus (Apply "f5" (Var "x")) (Apply "f4" (Var "x"))),
+>     Defun "f2" "x" (Minus (Apply "f4" (Var "x")) (Apply "f3" (Var "x"))),
+>     Defun "f1" "x" (Minus (Apply "f3" (Var "x")) (Apply "f2" (Var "x"))),
+>     Defun "main" "x" (Apply "f1" (Var "x"))]
+
+> t4_main x = dec x - dec 1000 where dec x = x-1
+> test4
+>  = [Defun "dec" "x" (Minus (Var "x") (Const 1)),
+>     Defun "main" "x" (Minus (Apply "dec" (Var "x")) (Apply "dec" (Const 1000)))
+>    ]
+
+Main> test3
+
+basea(x) { return x - 1; }
+
+baseb(x) { return x - 100; }
+
+f5(x) { return basea(x) - baseb(x); }
+
+f4(x) { return basea(x) - f5(x); }
+
+f3(x) { return f5(x) - f4(x); }
+
+f2(x) { return f4(x) - f3(x); }
+
+f1(x) { return f3(x) - f2(x); }
+
+main(x) { return f1(x); }
+
+Main>  putCode (transProgram test3)
+basea:
+        mov  $1, D2
+        mov  D1, D0
+        sub  D2, D0
+        ret
+baseb:
+        mov  $100, D2
+        mov  D1, D0
+        sub  D2, D0
+        ret
+f5:
+        push D1
+        mov  D1, D0
+        mov  D0, D1
+        jsr  baseb
+        mov  D0, D2
+        pop  D1
+        push D1
+        push D2
+        mov  D1, D0
+        mov  D0, D1
+        jsr  basea
+        pop  D2
+        pop  D1
+        sub  D2, D0
+        ret
+f4:
+        push D1
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f5
+        mov  D0, D2
+        pop  D1
+        push D1
+        push D2
+        mov  D1, D0
+        mov  D0, D1
+        jsr  basea
+        pop  D2
+        pop  D1
+        sub  D2, D0
+        ret
+f3:
+        push D1
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f4
+        mov  D0, D2
+        pop  D1
+        push D1
+        push D2
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f5
+        pop  D2
+        pop  D1
+        sub  D2, D0
+        ret
+f2:
+        push D1
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f3
+        mov  D0, D2
+        pop  D1
+        push D1
+        push D2
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f4
+        pop  D2
+        pop  D1
+        sub  D2, D0
+        ret
+f1:
+        push D1
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f2
+        mov  D0, D2
+        pop  D1
+        push D1
+        push D2
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f3
+        pop  D2
+        pop  D1
+        sub  D2, D0
+        ret
+main:
+        push D1
+        mov  D1, D0
+        mov  D0, D1
+        jsr  f1
+        pop  D1
+        ret
+
+Main> t3_main 100
+198
+Main> test test3 100
+Result returned from main: D0
+Registers D0-7: [198,100,-99,0,0,0,0,0]
+Register  A7  : 127
+
+
+
+> t4_main x = dec x - dec 1000 where dec x = x-1
+> test4
+>  = [Defun "dec" "x" (Minus (Var "x") (Const 1)),
+>     Defun "main" "x" (Minus (Apply "dec" (Var "x")) (Apply "dec"
+> (Const 1000)))
+>    ]
+
+Main> test4
+
+dec(x) { return x - 1; }
+
+main(x) { return dec(x) - dec(1000); }
+
+Main>  putCode (transProgram test4)
+dec:
+        mov  $1, D2
+        mov  D1, D0
+        sub  D2, D0
+        ret
+main:
+        push D1
+        mov  $1000, D0
+        mov  D0, D1
+        jsr  dec
+        mov  D0, D2
+        pop  D1
+        push D1
+        push D2
+        mov  D1, D0
+        mov  D0, D1
+        jsr  dec
+        pop  D2
+        pop  D1
+        sub  D2, D0
+        ret
+
+Main> t4_main 100
+-900
+Main> test test4 100
+Result returned from main: D0
+Registers D0-7: [-900,100,999,0,0,0,0,0]
+Register  A7  : 127
+

@@ -1,0 +1,16 @@
+D1_cache_size, 64  ,dl1.miss_rate, 0.9668
+0.2253
+D1_cache_size, 128  ,dl1.miss_rate, 0.9668
+0.1566
+D1_cache_size, 256  ,dl1.miss_rate, 0.9668
+0.1225
+D1_cache_size, 512  ,dl1.miss_rate, 0.9668
+0.0324
+D1_cache_size, 1024  ,dl1.miss_rate, 0.9668
+0.0209
+D1_cache_size, 2048  ,dl1.miss_rate, 0.9668
+0.0145
+D1_cache_size, 4096  ,dl1.miss_rate, 0.9668
+0.0081
+D1_cache_size, 8192  ,dl1.miss_rate, 0.9668
+0.0040

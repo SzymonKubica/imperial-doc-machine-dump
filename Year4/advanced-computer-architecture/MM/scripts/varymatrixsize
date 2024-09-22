@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Usage: varymatrixsize  256 8192 outfile.dat
+# for powers of two from 256 to 8192 inclusive
+# Actual problem size is (N+64) * (M+64) in a bid to avoid associativity issues.
+
+OUTPUTFILE=$3
+
+echo Output to $OUTPUTFILE StartSize: $1 EndSize: $2
+
+for ((x=$1; x <= $2 ; x *= 2))
+do
+  declare -i SIZE=$x+64
+  echo -n "SIZE," $SIZE " ,time" >>$OUTPUTFILE
+  make clean 
+  make x86 MYFLAGS="-DSZ=$SIZE"
+  ./MM1.x86 | grep mm1 >> $OUTPUTFILE
+done

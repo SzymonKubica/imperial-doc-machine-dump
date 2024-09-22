@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z $1 ] 
+then 
+  echo "Usage: ./simulate <file-name>.ss"
+else
+  /homes/phjk/simplesim/sim-outorder $1
+fi

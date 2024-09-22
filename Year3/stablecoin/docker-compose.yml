@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - 443:443
+    depends_on:
+      - backend
+    volumes:
+      - /etc/certs:/etc/nginx/certs
+  
+  backend:
+    build: ./backend
+    environment:
+      - SOLANA_CLIENT=${SOLANA_CLIENT}
+      - MINT_ACCOUNT=${MINT_ACCOUNT}
+      - RESERVE_ACCOUNT_ADDRESS=${RESERVE_ACCOUNT_ADDRESS}
+      - TOKEN_OWNER=${TOKEN_OWNER}
+      - SECRET_KEY=${SECRET_KEY}
+      - PAYSTACK_SECRET_KEY=${PAYSTACK_SECRET_KEY}        
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:alpine
+    restart: always
+    # ports:
+      # - 5432:5432
+    environment:
+      - POSTGRES_USER=stablecoin_database
+      - POSTGRES_PASSWORD=stablecoin
+      - POSTGRES_HOST=localhost
+    volumes:
+      - db:/var/lib/postgresql/data/
+
+volumes:
+  db:
+    driver: local
